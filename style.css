@@ -1,0 +1,339 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* 顶部工具栏 */
+.top-bar {
+    background: #fff;
+    border-bottom: 1px solid #e0e0e0;
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.top-bar h1 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #333;
+}
+
+.top-bar-controls {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.top-bar-controls label {
+    font-size: 14px;
+}
+
+.top-bar-controls select {
+    padding: 6px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    background: white;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* メインコンテンツ */
+.main-content {
+    display: flex;
+    gap: 20px;
+}
+
+/* 左パネル */
+.left-panel {
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* 右パネル */
+.right-panel {
+    width: 55%;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* セクション共通 */
+section {
+    background: #fff;
+    border-radius: 8px;
+    padding: 16px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* セクションタイトル */
+.section-title {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.input-title {
+    color: #2563eb;
+}
+
+.output-title {
+    color: #2563eb;
+    margin-bottom: 0;
+}
+
+.preview-title {
+    color: #2563eb;
+}
+
+.settings-title {
+    color: #dc2626;
+}
+
+/* 出力ヘッダー */
+.output-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+/* テキストエリア */
+textarea {
+    width: 100%;
+    height: 150px;
+    min-height: 100px;
+    padding: 12px;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+    font-size: 13px;
+    resize: vertical;
+    background-color: #fafafa;
+}
+
+textarea:focus {
+    outline: none;
+    border-color: #2563eb;
+}
+
+#output-katex {
+    background-color: #f8f8f8;
+    color: #333;
+}
+
+/* チェックボックス */
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.checkbox-label input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    accent-color: #2563eb;
+}
+
+/* コピーボタン */
+.btn-copy {
+    padding: 6px 16px;
+    border: none;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    background-color: #3b82f6;
+    color: white;
+}
+
+.btn-copy:hover {
+    background-color: #2563eb;
+}
+
+.btn-copy:active {
+    transform: scale(0.98);
+}
+
+/* プレビューセクション */
+.preview-section {
+    flex: 1;
+    min-height: 200px;
+}
+
+#preview-container {
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    padding: 16px;
+    overflow: auto;
+    min-height: 180px;
+    max-height: 400px;
+}
+
+#preview-content {
+    display: flex;
+    justify-content: flex-start;
+    overflow-x: auto;
+}
+
+/* 書式設定セクション */
+.settings-section {
+    padding: 16px;
+}
+
+.settings-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.settings-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.settings-row label {
+    font-size: 13px;
+}
+
+.settings-row select {
+    padding: 4px 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 13px;
+    background: white;
+}
+
+.settings-row input[type="range"] {
+    flex: 1;
+    min-width: 100px;
+    accent-color: #3b82f6;
+}
+
+#spacing-value {
+    font-size: 13px;
+    min-width: 40px;
+}
+
+/* 行間スペース行 */
+.spacing-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.spacing-row input[type="range"] {
+    flex: 1;
+    min-width: 150px;
+    max-width: 300px;
+}
+
+/* 列配置設定 */
+.alignment-row {
+    display: flex;
+    align-items: flex-end;
+    gap: 12px;
+    flex-wrap: wrap;
+    padding-top: 8px;
+    border-top: 1px solid #eee;
+}
+
+#column-alignments {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.align-control {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.align-control label {
+    font-size: 12px;
+    color: #666;
+}
+
+.align-control select {
+    padding: 4px 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 12px;
+    background: white;
+    min-width: 70px;
+}
+
+/* フッター */
+footer {
+    text-align: center;
+    padding: 20px;
+    color: #666;
+    font-size: 14px;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 900px) {
+    .top-bar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .main-content {
+        flex-direction: column;
+    }
+
+    .left-panel,
+    .right-panel {
+        width: 100%;
+    }
+}
+
+/* コピー成功時のトースト通知 */
+.toast {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-size: 14px;
+    z-index: 1000;
+    animation: fadeInOut 2s ease-in-out;
+}
+
+@keyframes fadeInOut {
+    0% { opacity: 0; transform: translateX(-50%) translateY(20px); }
+    15% { opacity: 1; transform: translateX(-50%) translateY(0); }
+    85% { opacity: 1; transform: translateX(-50%) translateY(0); }
+    100% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
+}

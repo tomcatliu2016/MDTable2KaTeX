@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table to KaTeX Converter</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- 顶部工具栏 -->
+    <div class="top-bar">
+        <h1>MDテーブルをKaTeXに変換</h1>
+        <div class="top-bar-controls">
+            <label for="format-select">形式:</label>
+            <select id="format-select">
+                <option value="auto">自動</option>
+                <option value="markdown">Markdown</option>
+                <option value="csv">CSV</option>
+                <option value="tsv">TSV</option>
+                <option value="space">スペース区切り</option>
+            </select>
+            <label class="checkbox-label">
+                <input type="checkbox" id="note-mode" checked>
+                noteで使用する
+            </label>
+        </div>
+    </div>
+
+    <div class="container">
+        <main class="main-content">
+            <!-- 左側: 入力と出力 -->
+            <div class="left-panel">
+                <section class="input-section">
+                    <h2 class="section-title input-title">入力: テーブル</h2>
+                    <textarea id="input-table" placeholder="ここにテーブルを貼り付けてください..." autofocus></textarea>
+                </section>
+
+                <section class="output-section">
+                    <div class="output-header">
+                        <h2 class="section-title output-title">出力: KaTeX</h2>
+                        <button id="btn-copy" class="btn btn-copy">コピー</button>
+                    </div>
+                    <textarea id="output-katex" readonly></textarea>
+                </section>
+            </div>
+
+            <!-- 右側: プレビューと設定 -->
+            <div class="right-panel">
+                <!-- プレビュー -->
+                <section class="preview-section">
+                    <h2 class="section-title preview-title">プレビュー</h2>
+                    <div id="preview-container">
+                        <div id="preview-content"></div>
+                    </div>
+                </section>
+
+                <!-- 書式設定 -->
+                <section class="settings-section">
+                    <h2 class="section-title settings-title">書式設定</h2>
+
+                    <div class="settings-grid">
+                        <!-- 第1行: チェックボックスとサイズ設定 -->
+                        <div class="settings-row">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="bold-header" checked>
+                                一行目を強調
+                            </label>
+
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="bold-first-col">
+                                一列目を強調
+                            </label>
+
+                            <label for="table-size">テーブルサイズ:</label>
+                            <select id="table-size">
+                                <option value="small" selected>Small</option>
+                                <option value="normal">Normal</option>
+                                <option value="large">Large</option>
+                            </select>
+
+                            <label for="text-style">テキストスタイル:</label>
+                            <select id="text-style">
+                                <option value="sans" selected>サンセリフ</option>
+                                <option value="serif">セリフ</option>
+                            </select>
+                        </div>
+
+                        <!-- 第2行: 行間スペース -->
+                        <div class="settings-row spacing-row">
+                            <label for="line-spacing">行間スペース:</label>
+                            <input type="range" id="line-spacing" min="1.0" max="2.5" step="0.1" value="1.5">
+                            <span id="spacing-value">1.50</span>
+                        </div>
+
+                        <!-- 第3行: 列配置 -->
+                        <div class="alignment-row">
+                            <div class="align-control">
+                                <label>すべての列</label>
+                                <select id="align-all">
+                                    <option value="">選択</option>
+                                    <option value="l">左揃え</option>
+                                    <option value="c">中央揃え</option>
+                                    <option value="r">右揃え</option>
+                                </select>
+                            </div>
+                            <div id="column-alignments">
+                                <!-- 動的に生成される列ごとの配置設定 -->
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <footer>
+            <p>Table to KaTeX Converter</p>
+        </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
