@@ -313,17 +313,18 @@ function generateKatex() {
 }
 
 // LaTeX特殊文字をエスケープ
+// 注意: note.comにコピーする際、\\ → \ に変換されるため、二重バックスラッシュを使用
 function escapeLatex(text) {
     // LaTeX特殊文字をエスケープ（Markdown処理の前に行う）
-    text = text.replace(/\\/g, '\\textbackslash{}');
-    text = text.replace(/&/g, '\\&');
-    text = text.replace(/%/g, '\\%');
-    text = text.replace(/\$/g, '\\$');
-    text = text.replace(/#/g, '\\#');
-    text = text.replace(/\{/g, '\\{');
-    text = text.replace(/\}/g, '\\}');
-    text = text.replace(/~/g, '\\textasciitilde{}');
-    text = text.replace(/\^/g, '\\textasciicircum{}');
+    text = text.replace(/\\/g, '\\\\textbackslash{}');
+    text = text.replace(/&/g, '\\\\&');
+    text = text.replace(/%/g, '\\\\%');
+    text = text.replace(/\$/g, '\\\\$');
+    text = text.replace(/#/g, '\\\\#');
+    text = text.replace(/\{/g, '\\\\{');
+    text = text.replace(/\}/g, '\\\\}');
+    text = text.replace(/~/g, '\\\\textasciitilde{}');
+    text = text.replace(/\^/g, '\\\\textasciicircum{}');
 
     // Markdownの強調記号を変換（**text** → \textbf{text}）
     text = text.replace(/\*\*([^*]+)\*\*/g, '\\textbf{$1}');
@@ -331,7 +332,7 @@ function escapeLatex(text) {
 
     // 残った単独の*や_を処理
     text = text.replace(/\*/g, '');
-    text = text.replace(/_/g, '\\_');
+    text = text.replace(/_/g, '\\\\_');
 
     return text;
 }
@@ -341,6 +342,18 @@ function renderPreview(katexCode) {
     try {
         // $$を除去
         let code = katexCode.replace(/^\$\$\n?/, '').replace(/\n?\$\$$/, '');
+
+        // note.com用の二重バックスラッシュを単一に戻す（プレビュー用）
+        // \\\\ → \\ (改行)
+        code = code.replace(/\\\\\\\\/g, '\\\\');
+        // \\% → \% など
+        code = code.replace(/\\\\%/g, '\\%');
+        code = code.replace(/\\\\&/g, '\\&');
+        code = code.replace(/\\\\_/g, '\\_');
+        code = code.replace(/\\\\#/g, '\\#');
+        code = code.replace(/\\\\\$/g, '\\$');
+        code = code.replace(/\\\\\{/g, '\\{');
+        code = code.replace(/\\\\\}/g, '\\}');
 
         // KaTeXでサポートされていないコマンドを除去/変換
         // \def\arraystretch{...} を除去
