@@ -410,11 +410,6 @@ async function copyToClipboard() {
         return;
     }
 
-    // noteで使用する場合、特殊処理を行う
-    if (noteMode.checked) {
-        text = convertForNote(text);
-    }
-
     try {
         await navigator.clipboard.writeText(text);
         showToast('コピーしました！');
